@@ -1,45 +1,32 @@
 import React from 'react'
-import Router from 'next/router'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 
+const Slider = dynamic(() =>
+import
+('../components/Slider'), {
+    ssr: false
+}
+)
 
-import ReactParallaxContent from './../components/rect-parallax-content'
-
-export default class extends React.Component {
+class Index extends React.Component {
 
     constructor(props) {
         super(props)
+
     }
-
-    // handling escape close
-    componentDidMount() {
-        // this.loaderTween = TweenLite.to(this.loaderWrap, 1, {
-        //     x: "100%", ease: Expo.easeInOut, delay: 2
-        // });
-    }
-
-    componentWillMount() {
-
-        // console.log('asdf');
-    }
-
 
     render() {
-        var settings = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        };
-
-
         return (
-            <ReactParallaxContent {...settings}>
-                <div className="parallax-inner" style={{ backgroundImage: `url(/static/imgs/hs_err_pid689.jpg)` }}>
-                    sdf
-                </div>
-            </ReactParallaxContent>
-        );
+            <div className='container bg-primary page'>
+
+                <Slider/>
+                <h1>Hello, world!</h1>
+                <Link href='/about'>
+                    <a className='btn btn-light'>About us</a>
+                </Link>
+            </div>
+        )
     }
 }
+export default Index
